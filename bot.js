@@ -94,8 +94,6 @@ if (message.content.startsWith(prefix + 'help')) { /// This is The DMS Code Send
 『${prefix}avatar/صورتك او صورة الي تمنشنو』
 『${prefix}embed/يكرر الي تقولو بشكل حلو』 
 『${prefix}emoji <any things>/لتحويل اي كلمه تقولها الي ايموجي』
-『${prefix}inv/لدعوة البوت الى سيرفرك』
-『${prefix}support/سيرفر الدعم』
 『${prefix}contact/ارسال اقتراح او لمراسلة صاحب البوت』
 **
   `
@@ -113,7 +111,7 @@ if (message.content.startsWith(prefix + 'help')) { /// This is The DMS Code Send
 『${prefix}give bots <rank> / لأعطاء رتبة لجميع البوتات』
 『${prefix}hchannel / اخفاء الشات』
 『${prefix}schannel / اضهار الشات المخفية』
-『${prefix}clr <numbr> / مسح الشات بعدد』
+『${prefix}clear <numbr> / مسح الشات بعدد』
 『${prefix}clear / مسح الشات』
 『${prefix}mute @user <time> / اعطاء العضو ميوت 』
 『${prefix}unmute @user / لفك الميوت عن الشخص 』
@@ -338,15 +336,15 @@ client.on('message', function(msg) {
       .setColor('RANDOM')
       .setThumbnail(msg.guild.iconURL)
       .setTitle(`**Showing Details Of** ${msg.guild.name}`)
-      .addField('`Server Region`',`[${msg.guild.region}]`,true)
-      .addField('`Roles Count`',`[${msg.guild.roles.size}]`,true)
-      .addField('`Members Count`',`[${msg.guild.memberCount}]`,true)
-      .addField('`Online Members`',`[${msg.guild.members.filter(m=>m.presence.status == 'online').size}]`,true)
-      .addField('`Text Channels`',`[${msg.guild.channels.filter(m => m.type === 'text').size}]`,true)
-      .addField('`Voice Channels`',`[${msg.guild.channels.filter(m => m.type === 'voice').size}]`,true)
-      .addField('`Server Owner`',`**${msg.guild.owner}**`,true)
-      .addField('`Server Id`',`**${msg.guild.id}**`,true)
-      .addField('`Server was created in`',msg.guild.createdAt.toLocaleString())
+      .addField('`**نوع السيرفر**`',`[${msg.guild.region}]`,true)
+      .addField('`**عدد رتب**`',`[${msg.guild.roles.size}]`,true)
+      .addField('**عدد لاعبين**`',`[${msg.guild.memberCount}]`,true)
+      .addField('`**لاعبين الاونلاين**`',`[${msg.guild.members.filter(m=>m.presence.status == 'online').size}]`,true)
+      .addField('`**الرومات الكتابية**`',`[${msg.guild.channels.filter(m => m.type === 'text').size}]`,true)
+      .addField('`**الرومات الصوتية**`',`[${msg.guild.channels.filter(m => m.type === 'voice').size}]`,true)
+      .addField('`**اونر سيرفر**`',`**${msg.guild.owner}**`,true)
+      .addField('`**ايدي سيرفر**`',`**${msg.guild.id}**`,true)
+      .addField'`**صنع سيرفر في`',msg.guild.createdAt.toLocaleString())
       msg.channel.send({embed:embed})
     }
 });
@@ -358,13 +356,13 @@ client.on('message', function(msg) {
             .setThumbnail(client.user.avatarURL)
             .setColor('RANDOM')
             .setTitle('``INFO ArabBot`` ')
-            .addField('``My Ping``' , [`${Date.now() - message.createdTimestamp}` + 'MS'], true)
-            .addField('``RAM Usage``', `[${(process.memoryUsage().rss / 1048576).toFixed()}MB]`, true)
-            .addField('``servers``', [client.guilds.size], true)
-            .addField('``channels``' , `[ ${client.channels.size} ]` , true)
-            .addField('``Users``' ,`[ ${client.users.size} ]` , true)
-            .addField('``My Name``' , `[ ${client.user.tag} ]` , true)
-            .addField('``My ID``' , `[ ${client.user.id} ]` , true)
+            .addField('``البنق :rocket:``' , [`${Date.now() - message.createdTimestamp}` + 'MS'], true)
+            .addField('``رامات المستخدمة:inbox_tray:  ``', `[${(process.memoryUsage().rss / 1048576).toFixed()}MB]`, true)
+            .addField('``السيرفرات :beginner: ``', [client.guilds.size], true)
+            .addField('``الرومات :pencil: ``' , `[ ${client.channels.size} ]` , true)
+            .addField('``الاعبين :bust_in_silhouette: ``' ,`[ ${client.users.size} ]` , true)
+            .addField('``اسمي ``' , `[ ${client.user.tag} ]` , true)
+            .addField('``الايدي`' , `[ ${client.user.id} ]` , true)
 			      .addField('``My Prefix``' , `[ - ]` , true)
 			      .addField('``My Language``' , `[ Java Script ]` , true)
 			      .setFooter('By | Friendly')
@@ -440,21 +438,21 @@ client.on('message', msg => {
 };
 });
 client.on('message', message => {
-    if (message.content.startsWith("G.trans")) {
+    if (message.content.startsWith("-trans")) {
       
     let toTrans = message.content.split(' ').slice(1);
     let language;
 
     language = toTrans[toTrans.length - 2] === 'to' ? toTrans.slice(toTrans.length - 2, toTrans.length)[1].trim() : undefined;
     if (!language) {
-        return message.reply(`Please supply valid agruments.\n**Example** \`G.trans [text] to [language]\``);
+        return message.reply(`Please supply valid agruments.\n**Example** \`-trans [text] to [language]\``);
     }
     let finalToTrans = toTrans.slice(toTrans.length - toTrans.length, toTrans.length - 2).join(' ');
     translate(finalToTrans, {to: language}).then(res => {
             message.channel.send({embed: {
                 color: 3447003,
                 author: {
-                  name: 'Galaxy\'s translator',
+                  name: 'Arabbot\'s translator',
                   icon_url: client.user.avatarURL
                 },
                 fields: [{
@@ -465,7 +463,7 @@ client.on('message', message => {
                 timestamp: new Date(),
                 footer: {
                   icon_url: client.user.avatarURL,
-                  text: "Galaxy"
+                  text: "ArabBot"
                 }
             }}
             )
@@ -1083,45 +1081,7 @@ client.on('message', msg => {
     }
 }
 });
-client.on('message', message => {
-   if(!message.channel.guild) return;
-if(message.content.startsWith(prefix + 'clear')) {
-if(!message.channel.guild) return message.channel.send('**This Command is Just For Servers**').then(m => m.delete(5000));
-if(!message.member.hasPermission('MANAGE_MESSAGES')) return      message.channel.send('**You Do not have permission** `MANAGE_MESSAGES`' );
-let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
-let request = `Requested By ${message.author.username}`;
-message.channel.send(`**Are You sure you want to clear the chat?**`).then(msg => {
-msg.react('✅')
-.then(() => msg.react('❌'))
-.then(() =>msg.react('✅'))
 
-let reaction1Filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
-let reaction2Filter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;
-
-let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
-let reaction2 = msg.createReactionCollector(reaction2Filter, { time: 12000 });
-reaction1.on("collect", r => {
-message.channel.send(`Chat will delete`).then(m => m.delete(5000));
-var msg;
-        msg = parseInt();
-
-      message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
-      message.channel.sendMessage("", {embed: {
-        title: "`` Chat Deleted ``",
-        color: 0x06DF00,
-        footer: {
-
-        }
-      }}).then(msg => {msg.delete(3000)});
-
-})
-reaction2.on("collect", r => {
-message.channel.send(`**Chat deletion cancelled**`).then(m => m.delete(5000));
-msg.delete();
-})
-})
-}
-});
 client.on('message', async message =>{
 const ms = require("ms");
 if (message.author.omar) return;
@@ -1887,12 +1847,12 @@ if (!points[message.author.id]) points[message.author.id] = {
     points: 0,
   };
   if(!message.guild) return;
-    let id = message.author.id,prefix="G.";
+    let id = message.author.id,prefix="-";
     if (spee[id] && (new Date).getTime() - spee[id] < 15*1000) {
         let r = (new Date).getTime() - spee[id];
         r = 15*1000 - r;
     }
-    if ( message.content == prefix+'speed'){
+    if ( message.content == prefix+'سرعه'){
        
         try{
 }catch(e){
@@ -2099,13 +2059,13 @@ if (!points[message.author.id]) points[message.author.id] = {
     points: 0,
   };
   if(!message.guild) return;
-    let id = message.author.id,prefix="G.";
+    let id = message.author.id,prefix="-";
     if (spee[id] && (new Date).getTime() - spee[id] < 15*1000) {
         let r = (new Date).getTime() - spee[id];
         r = 15*1000 - r;
     return;
     }
-    if ( message.content == prefix+'quas'){
+    if ( message.content == prefix+'سؤال'){
        
         try{
 }catch(e){
@@ -2276,7 +2236,7 @@ if (!points[message.author.id]) points[message.author.id] = {
     points: 0,
   };
   if(!message.guild) return;
-    let id = message.author.id,prefix="G.";
+    let id = message.author.id,prefix="-";
     if (spee[id] && (new Date).getTime() - spee[id] < 15*1000) {
         let r = (new Date).getTime() - spee[id];
         r = 15*1000 - r;
