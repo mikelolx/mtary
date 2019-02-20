@@ -344,7 +344,7 @@ client.on('message', function(msg) {
       .addField('`**الرومات الصوتية**`',`[${msg.guild.channels.filter(m => m.type === 'voice').size}]`,true)
       .addField('`**اونر سيرفر**`',`**${msg.guild.owner}**`,true)
       .addField('`**ايدي سيرفر**`',`**${msg.guild.id}**`,true)
-      .addField'`**صنع سيرفر في**`',msg.guild.createdAt.toLocaleString())
+      .addField('`صنع في`',msg.guild.createdAt.toLocaleString())
       msg.channel.send({embed:embed})
     }
 });
